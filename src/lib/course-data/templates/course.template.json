@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0",
+  "id": "course-id",
+  "slug": "course-slug",
+  "title": "Course title",
+  "key": "ME 000",
+  "period": "1° Cuatrimestre",
+  "audience": "Maestría en Medios Digitales",
+  "description": "Short course description.",
+  "coverImageUrl": "https://drive.google.com/file/d/REPLACE_FILE_ID/view?usp=share_link",
+  "modules": [
+    {
+      "id": "mod-1",
+      "title": "Módulo 1: Título",
+      "summary": "Qué logrará el estudiante en este módulo.",
+      "blocks": [
+        {
+          "type": "markdown",
+          "id": "mod-1-intro",
+          "title": "Introducción",
+          "body": "Contenido en Markdown."
+        },
+        {
+          "type": "video",
+          "id": "mod-1-video",
+          "title": "Video introductorio",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "type": "resource-list",
+          "id": "mod-1-recursos",
+          "title": "Recursos del módulo",
+          "resources": [
+            {
+              "type": "pdf",
+              "title": "Lectura base",
+              "url": "https://drive.google.com/file/d/REPLACE_FILE_ID/view?usp=share_link"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": []
+}

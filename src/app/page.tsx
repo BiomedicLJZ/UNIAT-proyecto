@@ -4,28 +4,20 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpen, BrainCircuit } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import catalog from '@/lib/course-data/catalog.json';
+import { CatalogSchema } from '@/lib/course-data/schema';
 
-const courses = [
-  {
-    id: 'teoria-de-la-imagen',
-    title: 'Teoría de la Imagen Aplicada',
-    description: 'Reconoce los elementos que integran la imagen para interpretación y composición en el arte y medios digitales.',
-    icon: <BookOpen className="h-8 w-8 text-primary" />,
-    href: '/courses/teoria-de-la-imagen',
-  },
-  {
-    id: 'simulador-docente',
-    title: 'Simulador Docente NEM',
-    description: 'Simulador de escenarios para la Nueva Escuela Mexicana con integración de IA.',
-    icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-    href: '/courses/simulador-docente',
-  },
-];
+const courses = CatalogSchema.parse(catalog);
+
+const iconMap = {
+  'book-open': <BookOpen className="h-8 w-8 text-primary" />,
+  'brain-circuit': <BrainCircuit className="h-8 w-8 text-primary" />,
+};
 
 export default function Home() {
   const getImage = (id: string) => {
     return PlaceHolderImages.find(img => img.id === id);
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -59,7 +51,7 @@ export default function Home() {
                      <div className="p-6">
                       <div className="flex items-start gap-4">
                         <div className="bg-primary/10 p-3 rounded-lg mt-1">
-                          {course.icon}
+                          {iconMap[course.icon]}
                         </div>
                         <div>
                           <CardTitle className="font-headline text-2xl">{course.title}</CardTitle>
@@ -68,8 +60,7 @@ export default function Home() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                  </CardContent>
+                  <CardContent className="flex-grow" />
                   <CardFooter>
                     <Link href={course.href} passHref className="w-full">
                       <Button className="w-full font-bold">
