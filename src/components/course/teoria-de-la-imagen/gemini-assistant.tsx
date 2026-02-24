@@ -64,7 +64,7 @@ export default function GeminiAssistant({ currentModule }: { currentModule: Modu
 
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
-    const userMsg = { role: 'user', text: inputText };
+    const userMsg: Message = { role: 'user', text: inputText };
     setMessages((prev) => [...prev, userMsg]);
     const currentInput = inputText;
     setInputText('');

@@ -12,10 +12,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConfettiEffect from './confetti-effect';
-import type { Module, Resource } from './types';
+import type { Activity, Module, Forum, Resource, Subtopic, Closing } from './types';
+import { ContentBlockRenderer } from '@/components/course/shared/content-block-renderer';
 import { getEmbedUrl } from './utils';
 
-const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, isCompleted: boolean, onToggle: () => void }) => {
+const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity?: Activity; isCompleted: boolean; onToggle: () => void }) => {
     if (!activity) return null;
     return (
         <div className={`mt-6 p-5 rounded-xl border transition-all ${isCompleted ? 'bg-green-500/10 border-green-500/20' : 'bg-muted/30'}`}>
@@ -32,8 +33,8 @@ const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, 
     );
 };
 
-const ForumRenderer = ({ forumData }: { forumData: any }) => {
-    const [posts, setPosts] = useState(forumData.initialPosts || []);
+const ForumRenderer = ({ forumData }: { forumData: Forum }) => {
+    const [posts] = useState(forumData.initialPosts || []);
     return (
         <Card>
             <CardHeader>
@@ -42,7 +43,7 @@ const ForumRenderer = ({ forumData }: { forumData: any }) => {
             <CardContent>
                 <p className="text-muted-foreground italic mb-4">"{forumData.question}"</p>
                 <div className="space-y-4">
-                    {posts.map((post:any, idx:number) => (
+                    {posts.map((post, idx: number) => (
                         <div key={idx} className="bg-muted/50 p-3 rounded-lg text-sm">
                             <p className="font-bold text-foreground">{post.user}</p>
                             <p className="text-muted-foreground">{post.text}</p>
@@ -54,7 +55,7 @@ const ForumRenderer = ({ forumData }: { forumData: any }) => {
     );
 };
 
-const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: any, onPlay: any }) => (
+const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: Closing; onPlay: (resource: Resource) => void }) => (
     <Card className="bg-gradient-to-br from-primary/5 to-background">
         <CardHeader>
             <CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/> Cierre y Conclusiones</CardTitle>
@@ -62,7 +63,7 @@ const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: any, o
         <CardContent>
             <p className="text-muted-foreground mb-4">{closingData.text}</p>
             {closingData.url && (
-                <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: closingData.url })}>
+                <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: closingData.url! })}>
                     <PlayCircle className="mr-2 h-4 w-4"/> {closingData.audioTitle} ({closingData.duration})
                 </Button>
             )}
@@ -94,7 +95,7 @@ const ResourceCard = ({ resource, onClick }: { resource: Resource, onClick: (res
 };
 
 
-const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isCompleted, onToggleActivity }: { subtopic: any, moduleId: string, index: number, onResourceClick: any, isCompleted: boolean, onToggleActivity: any }) => (
+const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isCompleted, onToggleActivity }: { subtopic: Subtopic; moduleId: string; index: number; onResourceClick: (resource: Resource) => void; isCompleted: boolean; onToggleActivity: (id: string) => void }) => (
   <section className="relative pl-0 md:pl-8 md:border-l-2 md:border-dashed">
     <div className="hidden md:flex absolute -left-[15px] top-0 w-7 h-7 rounded-full items-center justify-center text-xs font-bold text-white shadow-sm transition-colors bg-muted-foreground">
       {index + 1}
@@ -103,7 +104,7 @@ const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isComplet
       <div>
         <h3 className="text-2xl font-bold text-foreground mb-3 font-headline">{subtopic.title}</h3>
         <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
-          {subtopic.content}
+          <ContentBlockRenderer blocks={subtopic.content} />
         </div>
       </div>
       {subtopic.resources && subtopic.resources.length > 0 && (
@@ -152,7 +153,7 @@ export default function ModuleRenderer({
               ¡Felicidades!
             </h2>
             <div className="prose-lg text-muted-foreground mb-8 whitespace-pre-line leading-relaxed">
-              {module.content}
+              <ContentBlockRenderer blocks={module.content} />
             </div>
           </div>
           {module.image && (
@@ -173,7 +174,7 @@ export default function ModuleRenderer({
               </div>
             )}
             <h2 className="text-4xl font-bold mb-4 text-foreground font-headline">{module.title}</h2>
-            <div className="text-lg text-muted-foreground leading-relaxed mb-6">{module.content}</div>
+            <div className="text-lg text-muted-foreground leading-relaxed mb-6"><ContentBlockRenderer blocks={module.content} /></div>
             {module.resources && module.resources.length > 0 && (
                 <div className="flex flex-wrap gap-4">
                     {module.resources.map((res, idx) => (
@@ -192,7 +193,7 @@ export default function ModuleRenderer({
         <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto">
           <header className="border-b pb-6">
             <h2 className="text-4xl font-bold text-foreground mb-3 font-headline">{module.fullTitle || module.title}</h2>
-            <div className="text-lg text-muted-foreground leading-relaxed">{module.content}</div>
+            <div className="text-lg text-muted-foreground leading-relaxed"><ContentBlockRenderer blocks={module.content} /></div>
           </header>
           <div className="space-y-16">
             {module.hasIntroVideo && (
@@ -248,7 +249,7 @@ export default function ModuleRenderer({
                         <GraduationCap size={40} className="text-primary"/>
                     </div>
                     <h2 className="text-3xl font-bold text-foreground mb-4 font-headline">{module.title}</h2>
-                    <p className="text-lg text-muted-foreground">{module.content}</p>
+                    <div className="text-lg text-muted-foreground"><ContentBlockRenderer blocks={module.content} /></div>
                 </div>
                 <div className="bg-card p-6 rounded-xl border">
                     <h3 className="font-bold text-foreground mb-3 flex items-center gap-2 font-headline">
@@ -267,7 +268,7 @@ export default function ModuleRenderer({
       return (
         <div>
           <h2 className="text-2xl font-bold">{module.title}</h2>
-          <div>{module.content}</div>
+          <div><ContentBlockRenderer blocks={module.content} /></div>
         </div>
       );
   }
