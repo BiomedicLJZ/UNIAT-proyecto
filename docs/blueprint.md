@@ -1,0 +1,28 @@
+# **App Name**: AcademIA UNIAT
+
+## Core Features:
+
+- Course Catalog & Content Display: Allow professors, students, and administrators to browse available courses and view detailed, structured content for each, including modules, subtopics, and integrated multimedia resources (text, videos, PDFs, audio, presentations). This includes courses focused on AI tools (Gemini, Notebook LM, Gamma) and other curricular, extra-curricular, or professional development topics, leveraging Google Genkit and other Google APIs.
+- Interactive Learning Activities: Engage users with various activity types, including embedded quizzes, text input reflections, file uploads, and scenario-based decision-making exercises. These scenarios, which may involve AI-generated problems and options, are designed for practical application and assessment, often using a dual-metric scoring system (e.g., 'Humanism' and 'Innovation').
+- User Progress Tracking: Monitor personal course completion rates, module progress, activity submissions, and learning achievements, including scores from scenario-based activities and overall completion progress for defined learning paths.
+- Supplementary Resource Library: Access a curated collection of multimedia resources (articles, tutorials, datasets, templates, images, audio, video) to deepen understanding of AI tools and course topics. Resources can be contextually linked to specific modules or scenarios.
+- AI Learning Path Assistant: An AI-powered tool that provides personalized suggestions for learning paths and additional resources based on user interaction, course progress, identified skill gaps, and performance in interactive scenarios, guiding users through foundational and advanced topics.
+- AI Chat Tutor: An AI-powered conversational interface (tool) available within the course to clarify concepts, answer questions, provide immediate support related to course content, generate analogies or explanations tailored to specific learning levels, and simulate role-play interactions (e.g., historical figures).
+- AI Visual Content Analysis Tool: An AI-powered tool that can analyze uploaded images (via Google Lens or similar functionality), identifying compositional elements, aesthetic categories, potential communicative functions based on image theory, and extracting information for further analysis (e.g., analyzing product labels).
+- Interactive Discussion Forums: Facilitate critical discussion among users on specific module topics and ethical dilemmas presented in scenarios, allowing them to post comments, ask questions, and interact with peers.
+- Gamified Course Completion: Celebrate course completion with visual feedback like confetti, acknowledging user achievements and enhancing engagement, particularly upon successfully finishing a learning path or module.
+- Course Management: Provide administrators and course creators with tools to add, edit, and publish new courses, learning modules, resources, and activities, including the creation of interactive scenarios with AI-assisted problem and option generation.
+- Role-based Access Control: Implement granular access permissions, ensuring users can only view and interact with materials and features relevant to their assigned role (e.g., student, professor, administrator), affecting content visibility and activity submission/review capabilities.
+- AI-Enhanced Content Creation & Transformation Tools: Leverage AI (e.g., Gemini, 'Ayúdame a escribir') as a tool to assist users in creating or transforming content, such as generating outlines for chronicles, converting anecdotes into theatrical scripts, creating podcast scripts from scientific reports, simplifying legal texts, or generating research prompts.
+- AI-Assisted Data Analysis and Visualization: Utilize AI tools (e.g., Gemini in Google Sheets) to help users analyze collected data, identify patterns, generate reports (e.g., statistical charts), suggest financial planning categories, or forecast environmental changes based on input data.
+
+## Style Guidelines:
+
+- Primary color: A bold institutional orange (#FF8200), reflecting a vibrant and established academic presence, chosen for key actions and branding elements.
+- Background color: A soft, neutral cream-white (#FAFAF7) derived from the primary's hue but heavily desaturated, providing a clean and inviting learning environment in a light scheme.
+- Accent color: A soft, contrasting red (#DA6262) for subtle interactive highlights, notifications, or critical warnings, complementing the primary orange.
+- Secondary UI elements and text will utilize a professional dark grey (#6E6E6E), offering excellent readability and a sophisticated feel. AI-specific features will be highlighted with a distinctive violet (#8B5CF6).
+- Headlines and titles: 'Space Grotesk', a sans-serif with a techy and modern feel, perfect for showcasing AI tools. Body text: 'Inter', a clean and highly readable sans-serif for comfortable longer-form content.
+- Clear, modern, and academic-themed icons should be used to represent courses, modules, progress, and AI functionalities. Prefer a geometric or line-art style.
+- A responsive, modular layout featuring card-based displays for courses and resources, ensuring easy navigation and content discovery across various devices.
+- Subtle, fluid transitions for content loading and interactive elements (e.g., module completion, navigation), providing a polished user experience without distractions.
