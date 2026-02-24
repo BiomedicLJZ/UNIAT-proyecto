@@ -15,7 +15,7 @@ export type Activity = {
 export type Subtopic = {
   id: string;
   title: string;
-  content: React.ReactNode;
+  content: any;
   resources?: Resource[];
   activity?: Activity;
 };
@@ -44,7 +44,7 @@ export type Module = {
   type: 'presentation' | 'topic' | 'closing' | 'completion';
   description?: string;
   headerImage?: string;
-  content: React.ReactNode;
+  content: any;
   hasIntroVideo?: boolean;
   introVideoTitle?: string;
   introVideoUrl?: string;

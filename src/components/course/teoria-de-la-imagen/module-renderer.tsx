@@ -15,6 +15,50 @@ import ConfettiEffect from './confetti-effect';
 import type { Module, Resource } from './types';
 import { getEmbedUrl } from './utils';
 
+const JsonContentRenderer = ({ content }: { content: any }) => {
+  if (!content) return null;
+
+  if (typeof content === 'string') {
+    return <>{content}</>;
+  }
+
+  if (Array.isArray(content)) {
+    return (
+      <>
+        {content.map((item, index) => {
+          if (item.type === 'paragraph') {
+            return (
+              <p
+                key={index}
+                style={item.style}
+                className={item.className}
+                dangerouslySetInnerHTML={{ __html: item.text }}
+              />
+            );
+          }
+          if (item.type === 'list') {
+            return (
+              <ul key={index} className="list-disc pl-5 space-y-3 ml-4 mb-6">
+                {item.items.map((li: any, i: number) => (
+                  <li
+                    key={i}
+                    className="pl-2"
+                    dangerouslySetInnerHTML={{ __html: li.text }}
+                  />
+                ))}
+              </ul>
+            );
+          }
+          return null;
+        })}
+      </>
+    );
+  }
+
+  return null;
+};
+
+
 const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, isCompleted: boolean, onToggle: () => void }) => {
     if (!activity) return null;
     return (
@@ -102,9 +146,7 @@ const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isComplet
     <div className="space-y-5">
       <div>
         <h3 className="text-2xl font-bold text-foreground mb-3 font-headline">{subtopic.title}</h3>
-        <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
-          {subtopic.content}
-        </div>
+        <JsonContentRenderer content={subtopic.content} />
       </div>
       {subtopic.resources && subtopic.resources.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -152,7 +194,7 @@ export default function ModuleRenderer({
               ¡Felicidades!
             </h2>
             <div className="prose-lg text-muted-foreground mb-8 whitespace-pre-line leading-relaxed">
-              {module.content}
+              <JsonContentRenderer content={module.content} />
             </div>
           </div>
           {module.image && (
@@ -173,7 +215,9 @@ export default function ModuleRenderer({
               </div>
             )}
             <h2 className="text-4xl font-bold mb-4 text-foreground font-headline">{module.title}</h2>
-            <div className="text-lg text-muted-foreground leading-relaxed mb-6">{module.content}</div>
+            <div className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <JsonContentRenderer content={module.content} />
+            </div>
             {module.resources && module.resources.length > 0 && (
                 <div className="flex flex-wrap gap-4">
                     {module.resources.map((res, idx) => (
@@ -192,7 +236,9 @@ export default function ModuleRenderer({
         <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto">
           <header className="border-b pb-6">
             <h2 className="text-4xl font-bold text-foreground mb-3 font-headline">{module.fullTitle || module.title}</h2>
-            <div className="text-lg text-muted-foreground leading-relaxed">{module.content}</div>
+            <div className="text-lg text-muted-foreground leading-relaxed">
+                <JsonContentRenderer content={module.content} />
+            </div>
           </header>
           <div className="space-y-16">
             {module.hasIntroVideo && (

@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Module } from '@/components/course/teoria-de-la-imagen/types';
 
 const paragraphStyle = { textIndent: '1.27cm' };
@@ -44,53 +43,13 @@ export const COURSE_CONTENT: Module[] = [
     type: 'presentation',
     headerImage:
       'https://drive.google.com/uc?export=view&id=18XHyzQVUFIew5gWSq8rXNpXub30Nn32V',
-    content: (
-      <>
-        <p style={paragraphStyle} className={justifyClass}>
-          {' '}
-          Bienvenido a la unidad de aprendizaje{' '}
-          <strong>Teoría de la Imagen Aplicada</strong>.{' '}
-        </p>
-        <p style={paragraphStyle} className={justifyClass}>
-          {' '}
-          Este curso es fundamental para deconstruir visualmente los proyectos
-          de maestría. Analizaremos la imagen no solo como un resultado
-          estético, sino como un complejo sistema de relaciones semánticas,
-          técnicas y sociales.{' '}
-        </p>
-        <p style={paragraphStyle} className={justifyClass}>
-          {' '}
-          En el nivel de posgrado, la imagen deja de ser un mero resultado
-          técnico para convertirse en un objeto de estudio complejo, un fenómeno
-          que articula relaciones de poder, estéticas, filosóficas y de
-          mercado. Mientras que en su formación de licenciatura el enfoque pudo
-          centrarse en el "cómo hacer" (la <i>técne</i>), en esta maestría nos
-          enfocaremos en el "por qué" y el "para qué" (el <i>logos</i> y el{' '}
-          <i>telos</i>).{' '}
-        </p>
-        <p style={paragraphStyle} className={justifyClass}>
-          {' '}
-          Esta asignatura está diseñada para dotarlos de un aparato crítico
-          robusto que les permita disectar la imagen digital. No nos limitaremos
-          a la composición visual tradicional; exploraremos la imagen como una
-          entidad multisensorial que interactúa con el sonido y el movimiento, y
-          que posee la capacidad de referenciarse a sí misma (metaimagen).
-          Analizaremos las categorías estéticas no como etiquetas estáticas,
-          sino como tensiones dinámicas (lo bello frente a lo siniestro, lo
-          sublime frente a lo grotesco) esenciales para la narrativa transmedia
-          y el diseño de experiencias.{' '}
-        </p>
-        <p style={paragraphStyle} className={justifyClass}>
-          {' '}
-          A través de un enfoque estructuralista y semiótico, entenderemos cómo
-          la imagen "narra" a través de intertextos y paratextos, y cómo se
-          sitúa en un contexto histórico (diacronía) y social (sincronía). Al
-          finalizar este curso, su producción creativa no será inocente; será
-          una praxis informada, capaz de codificar y decodificar mensajes
-          complejos en un ecosistema digital saturado.{' '}
-        </p>
-      </>
-    ),
+    content: [
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: ' Bienvenido a la unidad de aprendizaje <strong>Teoría de la Imagen Aplicada</strong>. ' },
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: ' Este curso es fundamental para deconstruir visualmente los proyectos de maestría. Analizaremos la imagen no solo como un resultado estético, sino como un complejo sistema de relaciones semánticas, técnicas y sociales. ' },
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: ' En el nivel de posgrado, la imagen deja de ser un mero resultado técnico para convertirse en un objeto de estudio complejo, un fenómeno que articula relaciones de poder, estéticas, filosóficas y de mercado. Mientras que en su formación de licenciatura el enfoque pudo centrarse en el "cómo hacer" (la <i>técne</i>), en esta maestría nos enfocaremos en el "por qué" y el "para qué" (el <i>logos</i> y el <i>telos</i>). ' },
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: ' Esta asignatura está diseñada para dotarlos de un aparato crítico robusto que les permita disectar la imagen digital. No nos limitaremos a la composición visual tradicional; exploraremos la imagen como una entidad multisensorial que interactúa con el sonido y el movimiento, y que posee la capacidad de referenciarse a sí misma (metaimagen). Analizaremos las categorías estéticas no como etiquetas estáticas, sino como tensiones dinámicas (lo bello frente a lo siniestro, lo sublime frente a lo grotesco) esenciales para la narrativa transmedia y el diseño de experiencias. ' },
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: ' A través de un enfoque estructuralista y semiótico, entenderemos cómo la imagen "narra" a través de intertextos y paratextos, y cómo se sitúa en un contexto histórico (diacronía) y social (sincronía). Al finalizar este curso, su producción creativa no será inocente; será una praxis informada, capaz de codificar y decodificar mensajes complejos en un ecosistema digital saturado. ' }
+    ],
     resources: [
       {
         type: 'pdf',
@@ -121,23 +80,9 @@ export const COURSE_CONTENT: Module[] = [
       'Video Introductorio: Entrevista con Andrés Carmona- Productor Audiovisual',
     introVideoUrl:
       'https://drive.google.com/file/d/1M6ehqTPsQgptia9cOuiV2ox9gc6QgOzt/view?usp=share_link',
-    content: (
-      <>
-        <p style={paragraphStyle} className={justifyClass}>
-          En este primer módulo, desmantelamos la idea de la imagen como un
-          cuadro estático y silencioso. En la era digital, la imagen es un
-          organismo vivo que respira a través de la interacción. Abordaremos la
-          "imagen integrada", donde lo gráfico, lo sonoro y lo cinético no son
-          capas separadas, sino tejidos de una misma piel narrativa. Nos
-          apoyaremos en la visión contemporánea de autores como Zamora Aguilar
-          (2022) para entender la ontología de la imagen actual, y en Iapichino
-          (2002) para comprender cómo el sonido no acompaña, sino que construye
-          la imagen. El objetivo es que logren visualizar la "productividad
-          semántica" de sus proyectos: cada píxel, cada <i>frame</i> y cada
-          onda sonora significan algo en conjunto.
-        </p>
-      </>
-    ),
+    content: [
+      { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'En este primer módulo, desmantelamos la idea de la imagen como un cuadro estático y silencioso. En la era digital, la imagen es un organismo vivo que respira a través de la interacción. Abordaremos la "imagen integrada", donde lo gráfico, lo sonoro y lo cinético no son capas separadas, sino tejidos de una misma piel narrativa. Nos apoyaremos en la visión contemporánea de autores como Zamora Aguilar (2022) para entender la ontología de la imagen actual, y en Iapichino (2002) para comprender cómo el sonido no acompaña, sino que construye la imagen. El objetivo es que logren visualizar la "productividad semántica" de sus proyectos: cada píxel, cada <i>frame</i> y cada onda sonora significan algo en conjunto.' }
+    ],
     forum: {
       title: 'Debate: La Metaimagen en el Gameplay',
       question:
@@ -165,28 +110,11 @@ export const COURSE_CONTENT: Module[] = [
       {
         id: '1.1',
         title: '1.1 Gráfica',
-        content: (
-          <>
-            <p style={paragraphStyle} className={justifyClass}>
-              La dimensión gráfica es el anclaje primario de la percepción
-              visual, pero en medios digitales, trasciende la mancha y la línea.
-              No hablamos solo de resolución o vectorización, sino de la grafía
-              como huella de identidad.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              Debemos entender la gráfica como un sistema de signos. Siguiendo
-              los principios de la composición visual (López et al., 2022), cada
-              elección cromática y morfológica establece una jerarquía de
-              lectura.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              <strong>Ejemplo:</strong> En el diseño de una interfaz para una{' '}
-              <i>app</i> de banca (<i>UX/UI</i>), la gráfica no solo "decora";
-              la rigidez de las líneas transmite seguridad (función simbólica),
-              mientras que el color guía la acción (función conativa).
-            </p>
-          </>
-        ),
+        content: [
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'La dimensión gráfica es el anclaje primario de la percepción visual, pero en medios digitales, trasciende la mancha y la línea. No hablamos solo de resolución o vectorización, sino de la grafía como huella de identidad.'},
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'Debemos entender la gráfica como un sistema de signos. Siguiendo los principios de la composición visual (López et al., 2022), cada elección cromática y morfológica establece una jerarquía de lectura.' },
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: '<strong>Ejemplo:</strong> En el diseño de una interfaz para una <i>app</i> de banca (<i>UX/UI</i>), la gráfica no solo "decora"; la rigidez de las líneas transmite seguridad (función simbólica), mientras que el color guía la acción (función conativa).' }
+        ],
         resources: [
           {
             type: 'img',
@@ -203,28 +131,11 @@ export const COURSE_CONTENT: Module[] = [
       {
         id: '1.2',
         title: '1.2 Sonora',
-        content: (
-          <>
-            <p style={paragraphStyle} className={justifyClass}>
-              La imagen digital es, en su mayoría, audiovisual. Iapichino (2002)
-              argumenta que existen dimensiones narrativas donde la música y el
-              sonido "esculpen" el tiempo de la imagen. El sonido dota de
-              tridimensionalidad emotiva a la superficie plana de la pantalla.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              Hablamos de la <i>síncresis</i> (unión de sincronía y síntesis). Un
-              sonido puede cambiar el significado de una imagen neutral.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              <strong>Ejemplo:</strong> Un plano secuencia de un pasillo vacío
-              (imagen neutra). Si agregamos música orquestal mayor, es un inicio
-              heroico; si agregamos un zumbido de baja frecuencia y sonidos
-              metálicos, se convierte en una escena de terror (lo
-              grotesco/siniestro). El sonido es imagen en la mente del
-              espectador.
-            </p>
-          </>
-        ),
+        content: [
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'La imagen digital es, en su mayoría, audiovisual. Iapichino (2002) argumenta que existen dimensiones narrativas donde la música y el sonido "esculpen" el tiempo de la imagen. El sonido dota de tridimensionalidad emotiva a la superficie plana de la pantalla.' },
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'Hablamos de la <i>síncresis</i> (unión de sincronía y síntesis). Un sonido puede cambiar el significado de una imagen neutral.' },
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: '<strong>Ejemplo:</strong> Un plano secuencia de un pasillo vacío (imagen neutra). Si agregamos música orquestal mayor, es un inicio heroico; si agregamos un zumbido de baja frecuencia y sonidos metálicos, se convierte en una escena de terror (lo grotesco/siniestro). El sonido es imagen en la mente del espectador.' }
+        ],
         resources: [
           {
             type: 'pdf',
@@ -241,28 +152,11 @@ export const COURSE_CONTENT: Module[] = [
       {
         id: '1.3',
         title: '1.3 El Movimiento',
-        content: (
-          <>
-            <p style={paragraphStyle} className={justifyClass}>
-              El movimiento introduce la variable tiempo (<i>cronos</i>) y
-              ritmo. La imagen en movimiento deja de ser representación para
-              convertirse en presentación de una realidad que fluye. Aquí
-              analizamos la cinética no solo como desplazamiento, sino como
-              transformación.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              En la animación y <i>VFX</i>, el movimiento tiene peso y carácter.
-              Los 12 principios de la animación clásica se reinterpretan hoy en
-              la simulación de partículas y dinámicas de fluidos.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              <strong>Ejemplo:</strong> En un videojuego, la diferencia entre un{' '}
-              <i>NPC</i> (personaje no jugable) aliado y uno enemigo a menudo
-              radica en su patrón de movimiento: fluido y armónico vs. errático
-              y espasmódico.
-            </p>
-          </>
-        ),
+        content: [
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'El movimiento introduce la variable tiempo (<i>cronos</i>) y ritmo. La imagen en movimiento deja de ser representación para convertirse en presentación de una realidad que fluye. Aquí analizamos la cinética no solo como desplazamiento, sino como transformación.'},
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'En la animación y <i>VFX</i>, el movimiento tiene peso y carácter. Los 12 principios de la animación clásica se reinterpretan hoy en la simulación de partículas y dinámicas de fluidos.' },
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: '<strong>Ejemplo:</strong> En un videojuego, la diferencia entre un <i>NPC</i> (personaje no jugable) aliado y uno enemigo a menudo radica en su patrón de movimiento: fluido y armónico vs. errático y espasmódico.' }
+        ],
         resources: [
           {
             type: 'video',
@@ -284,28 +178,11 @@ export const COURSE_CONTENT: Module[] = [
       {
         id: '1.4',
         title: '1.4 Metaimagen',
-        content: (
-          <>
-            <p style={paragraphStyle} className={justifyClass}>
-              Este es el concepto más reflexivo del bloque. La metaimagen es la
-              imagen que habla sobre sí misma; es la autoconsciencia del medio.
-              Martín Prada (2002) nos alerta sobre cómo en la era de internet,
-              las imágenes se citan constantemente unas a otras.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              Es el "cuadro dentro del cuadro" o la ruptura de la cuarta pared
-              visual.
-            </p>
-            <p style={paragraphStyle} className={justifyClass}>
-              <strong>Ejemplo:</strong> En la película{' '}
-              <i>Spider-Man: Into the Spider-Verse</i>, el uso de texturas de
-              cómic (puntos <i>Ben-Day</i>) y onomatopeyas visuales sobre los
-              personajes 3D es una metaimagen: el <i>film</i> nos recuerda
-              constantemente que estamos viendo un cómic animado, celebrando su
-              propia artificialidad.
-            </p>
-          </>
-        ),
+        content: [
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'Este es el concepto más reflexivo del bloque. La metaimagen es la imagen que habla sobre sí misma; es la autoconsciencia del medio. Martín Prada (2002) nos alerta sobre cómo en la era de internet, las imágenes se citan constantemente unas a otras.'},
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'Es el "cuadro dentro del cuadro" o la ruptura de la cuarta pared visual.'},
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: '<strong>Ejemplo:</strong> En la película <i>Spider-Man: Into the Spider-Verse</i>, el uso de texturas de cómic (puntos <i>Ben-Day</i>) y onomatopeyas visuales sobre los personajes 3D es una metaimagen: el <i>film</i> nos recuerda constantemente que estamos viendo un cómic animado, celebrando su propia artificialidad.'}
+        ],
         resources: [
           {
             type: 'pdf',
@@ -334,12 +211,9 @@ export const COURSE_CONTENT: Module[] = [
       {
         id: '1.5',
         title: '1.5 Evaluación del Módulo 1',
-        content: (
-          <p style={paragraphStyle} className={justifyClass}>
-            Cierre del módulo. Evaluación de los conceptos fundamentales:
-            Gráfica, Sonido y Movimiento.
-          </p>
-        ),
+        content: [
+          { type: 'paragraph', style: paragraphStyle, className: justifyClass, text: 'Cierre del módulo. Evaluación de los conceptos fundamentales: Gráfica, Sonido y Movimiento.' }
+        ],
         activity: {
           type: 'exam',
           title: 'Parcial 1: Fundamentos de la Imagen',
@@ -354,68 +228,28 @@ export const COURSE_CONTENT: Module[] = [
     id: "sources",
     title: "Fuentes de Información",
     type: "presentation",
-    content: (
-      <>
-        <p className={justifyClass}>
-          A continuación se presenta la bibliografía fundamental y
-          complementaria utilizada para el desarrollo de esta unidad de
-          aprendizaje. Haz clic en los títulos para acceder a los recursos
-          disponibles:
-        </p>
-        <ul className="list-disc pl-5 space-y-3 ml-4 mb-6">
-          <li className="pl-2">
-            <a
-              href="https://drive.google.com/file/d/1VG-oJxlz0xzr85MbKri-qKX_i7D4iSlh/view?usp=share_link"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary hover:underline transition-colors"
-            >
-              Duran Castro, Mauricio (2003).{' '}
-              <i>Imagen, Movimiento y Tiempo. Artes No. 6 Volumen 3/ julio -diciembre</i>.
-              Universidad de Antioquía, Colombia.
-            </a>
-          </li>
-        </ul>
-      </>
-    ),
+    content: [
+      { type: 'paragraph', className: justifyClass, text: 'A continuación se presenta la bibliografía fundamental y complementaria utilizada para el desarrollo de esta unidad de aprendizaje. Haz clic en los títulos para acceder a los recursos disponibles:' },
+      { type: 'list', items: [
+        { text: '<a href="https://drive.google.com/file/d/1VG-oJxlz0xzr85MbKri-qKX_i7D4iSlh/view?usp=share_link" target="_blank" rel="noopener noreferrer" class="hover:text-primary hover:underline transition-colors">Duran Castro, Mauricio (2003). <i>Imagen, Movimiento y Tiempo. Artes No. 6 Volumen 3/ julio -diciembre</i>. Universidad de Antioquía, Colombia.</a>' }
+      ]}
+    ],
   },
   {
     id: "notebooklm",
     title: "NotebookLM Teoría de la Imagen Aplicada",
     type: "presentation",
-    content: (
-      <>
-        <p className={justifyClass}>
-          <strong>NotebookLM</strong> es una herramienta experimental de Google
-          que utiliza la inteligencia artificial para ayudarte a obtener
-          información de tus documentos.
-        </p>
-        <p className={justifyClass}>
-          En el contexto de la materia{' '}
-          <strong>Teoría de la Imagen Aplicada</strong>, recomendamos utilizar
-          esta herramienta para:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 ml-4 mb-6">
-          <li className="pl-2">
-            Subir los artículos teóricos (PDFs) proporcionados en cada módulo.
-          </li>
-          <li className="pl-2">
-            Generar resúmenes automáticos para facilitar la lectura profunda.
-          </li>
-          <li className="pl-2">
-            Crear cuestionarios de autoevaluación para poner a prueba tu
-            comprensión de los conceptos estéticos y semióticos.
-          </li>
-          <li className="pl-2">
-            Hacer preguntas específicas a los textos ("¿Qué dice el autor sobre
-            la metaimagen?") para obtener citas y explicaciones instantáneas.
-          </li>
-        </ul>
-        <p className={justifyClass}>
-          Es tu asistente de investigación personalizado para la maestría.
-        </p>
-      </>
-    ),
+    content: [
+      { type: 'paragraph', className: justifyClass, text: '<strong>NotebookLM</strong> es una herramienta experimental de Google que utiliza la inteligencia artificial para ayudarte a obtener información de tus documentos.' },
+      { type: 'paragraph', className: justifyClass, text: 'En el contexto de la materia <strong>Teoría de la Imagen Aplicada</strong>, recomendamos utilizar esta herramienta para:' },
+      { type: 'list', items: [
+        { text: 'Subir los artículos teóricos (PDFs) proporcionados en cada módulo.' },
+        { text: 'Generar resúmenes automáticos para facilitar la lectura profunda.' },
+        { text: 'Crear cuestionarios de autoevaluación para poner a prueba tu comprensión de los conceptos estéticos y semióticos.' },
+        { text: 'Hacer preguntas específicas a los textos ("¿Qué dice el autor sobre la metaimagen?") para obtener citas y explicaciones instantáneas.' }
+      ]},
+      { type: 'paragraph', className: justifyClass, text: 'Es tu asistente de investigación personalizado para la maestría.' }
+    ],
     resources: [
       {
         type: 'link',
