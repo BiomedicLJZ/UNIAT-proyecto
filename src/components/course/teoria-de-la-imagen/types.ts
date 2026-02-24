@@ -1,3 +1,5 @@
+import type { ContentBlock } from '@/components/course/shared/content-block-renderer';
+
 export type Resource = {
   type: 'pdf' | 'video' | 'presentation' | 'audio' | 'img' | 'link';
   title: string;
@@ -15,7 +17,7 @@ export type Activity = {
 export type Subtopic = {
   id: string;
   title: string;
-  content: React.ReactNode;
+  content: ContentBlock[];
   resources?: Resource[];
   activity?: Activity;
 };
@@ -44,7 +46,7 @@ export type Module = {
   type: 'presentation' | 'topic' | 'closing' | 'completion';
   description?: string;
   headerImage?: string;
-  content: React.ReactNode;
+  content: ContentBlock[];
   hasIntroVideo?: boolean;
   introVideoTitle?: string;
   introVideoUrl?: string;
@@ -52,6 +54,7 @@ export type Module = {
   subtopics?: Subtopic[];
   forum?: Forum;
   closing?: Closing;
+  closingText?: string;
   activity?: Activity;
   image?: string;
 };
