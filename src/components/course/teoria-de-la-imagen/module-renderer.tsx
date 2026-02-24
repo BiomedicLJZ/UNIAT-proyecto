@@ -1,4 +1,5 @@
 'use client';
+import React, { useState } from 'react';
 import {
   Award,
   BookOpen,
@@ -11,11 +12,63 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConfettiEffect from './confetti-effect';
-import ActivityRenderer from './activity-renderer';
-import ForumRenderer from './forum-renderer';
-import ModuleConclusionRenderer from './module-conclusion-renderer';
 import type { Module, Resource } from './types';
 import { getEmbedUrl } from './utils';
+
+const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, isCompleted: boolean, onToggle: () => void }) => {
+    if (!activity) return null;
+    return (
+        <div className={`mt-6 p-5 rounded-xl border transition-all ${isCompleted ? 'bg-green-500/10 border-green-500/20' : 'bg-muted/30'}`}>
+            <h4 className="font-bold text-lg text-foreground mb-2 font-headline">{activity.title}</h4>
+            <p className="text-sm text-muted-foreground mb-4">{activity.instruction}</p>
+            {activity.url ? (
+                <Button asChild onClick={isCompleted ? undefined : onToggle}>
+                    <a href={activity.url} target="_blank" rel="noopener noreferrer">{isCompleted ? 'Ver Entrega' : 'Realizar Actividad'}</a>
+                </Button>
+            ) : (
+                <Button onClick={onToggle}>{isCompleted ? 'Marcar como no completado' : 'Marcar como completado'}</Button>
+            )}
+        </div>
+    );
+};
+
+const ForumRenderer = ({ forumData }: { forumData: any }) => {
+    const [posts, setPosts] = useState(forumData.initialPosts || []);
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2 font-headline"><MessageSquare className="text-primary"/> {forumData.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground italic mb-4">"{forumData.question}"</p>
+                <div className="space-y-4">
+                    {posts.map((post:any, idx:number) => (
+                        <div key={idx} className="bg-muted/50 p-3 rounded-lg text-sm">
+                            <p className="font-bold text-foreground">{post.user}</p>
+                            <p className="text-muted-foreground">{post.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
+
+const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: any, onPlay: any }) => (
+    <Card className="bg-gradient-to-br from-primary/5 to-background">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/> Cierre y Conclusiones</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <p className="text-muted-foreground mb-4">{closingData.text}</p>
+            {closingData.url && (
+                <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: closingData.url })}>
+                    <PlayCircle className="mr-2 h-4 w-4"/> {closingData.audioTitle} ({closingData.duration})
+                </Button>
+            )}
+        </CardContent>
+    </Card>
+);
 
 const ResourceCard = ({ resource, onClick }: { resource: Resource, onClick: (res: Resource) => void }) => {
     const iconMap = {
@@ -219,58 +272,3 @@ export default function ModuleRenderer({
       );
   }
 }
-
-const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, isCompleted: boolean, onToggle: () => void }) => {
-    if (!activity) return null;
-    return (
-        <div className={`mt-6 p-5 rounded-xl border transition-all ${isCompleted ? 'bg-green-500/10 border-green-500/20' : 'bg-muted/30'}`}>
-            <h4 className="font-bold text-lg text-foreground mb-2 font-headline">{activity.title}</h4>
-            <p className="text-sm text-muted-foreground mb-4">{activity.instruction}</p>
-            {activity.url ? (
-                <Button asChild onClick={isCompleted ? undefined : onToggle}>
-                    <a href={activity.url} target="_blank" rel="noopener noreferrer">{isCompleted ? 'Ver Entrega' : 'Realizar Actividad'}</a>
-                </Button>
-            ) : (
-                <Button onClick={onToggle}>{isCompleted ? 'Marcar como no completado' : 'Marcar como completado'}</Button>
-            )}
-        </div>
-    );
-};
-
-const ForumRenderer = ({ forumData }: { forumData: any }) => {
-    const [posts, setPosts] = useState(forumData.initialPosts || []);
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2 font-headline"><MessageSquare className="text-primary"/> {forumData.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground italic mb-4">"{forumData.question}"</p>
-                <div className="space-y-4">
-                    {posts.map((post:any, idx:number) => (
-                        <div key={idx} className="bg-muted/50 p-3 rounded-lg text-sm">
-                            <p className="font-bold text-foreground">{post.user}</p>
-                            <p className="text-muted-foreground">{post.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </CardContent>
-        </Card>
-    );
-};
-
-const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: any, onPlay: any }) => (
-    <Card className="bg-gradient-to-br from-primary/5 to-background">
-        <CardHeader>
-            <CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/> Cierre y Conclusiones</CardTitle>
-        </CardHeader>
-        <CardContent>
-            <p className="text-muted-foreground mb-4">{closingData.text}</p>
-            {closingData.url && (
-                <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: closingData.url })}>
-                    <PlayCircle className="mr-2 h-4 w-4"/> {closingData.audioTitle} ({closingData.duration})
-                </Button>
-            )}
-        </CardContent>
-    </Card>
-);
