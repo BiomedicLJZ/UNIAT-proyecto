@@ -2,6 +2,7 @@
 import { Menu, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import Link from 'next/link';
 
 type CourseHeaderProps = {
   courseInfo: { name: string, key: string, period: string, student: string };
@@ -16,10 +17,10 @@ export default function CourseHeader({ courseInfo, onMenuClick, onAudioClick }: 
         <Button onClick={onMenuClick} variant="ghost" size="icon" className="lg:hidden">
           <Menu size={24} />
         </Button>
-        <div className="flex flex-col justify-center select-none cursor-pointer">
+        <Link href="/" className="flex flex-col justify-center select-none cursor-pointer">
           <span className="font-extrabold text-2xl leading-none tracking-tighter text-primary font-headline">UNIAT</span>
           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none hidden sm:block mt-0.5">University of Advanced Technologies</span>
-        </div>
+        </Link>
         <div className="hidden md:block h-12 w-px bg-border mx-3"></div>
 
         <div className="hidden md:flex flex-col justify-center gap-1">

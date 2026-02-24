@@ -1,6 +1,7 @@
 'use client';
-import { ArrowRight, CheckCircle, Cpu } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 type WelcomeViewProps = {
   onStart: () => void;
@@ -9,6 +10,13 @@ type WelcomeViewProps = {
 export default function WelcomeView({ onStart }: WelcomeViewProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 p-6 text-center">
+      <div className="absolute top-6 left-6">
+        <Button asChild variant="ghost" className="font-bold hover:underline">
+          <Link href="/">
+            <Home className="w-5 h-5 mr-2" /> Inicio
+          </Link>
+        </Button>
+      </div>
       <div className="bg-card p-10 rounded-3xl shadow-2xl max-w-3xl w-full border-t-8 border-violet-500">
         <div className="mb-8 flex justify-center">
           <div className="bg-violet-100 p-6 rounded-full shadow-inner">

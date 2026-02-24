@@ -1,7 +1,9 @@
 'use client';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Home } from 'lucide-react';
 import type { Route } from './types';
 import { Progress } from '@/components/ui/progress';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 type RoutesViewProps = {
   routes: Route[];
@@ -12,7 +14,14 @@ type RoutesViewProps = {
 export default function RoutesView({ routes, completedScenarios, onSelectRoute }: RoutesViewProps) {
   return (
     <div className="min-h-screen bg-slate-50 p-6">
-      <header className="max-w-6xl mx-auto mb-10 text-center">
+      <header className="max-w-6xl mx-auto mb-10 text-center relative">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2">
+            <Button asChild variant="ghost" className="font-bold hover:underline">
+              <Link href="/">
+                <Home className="w-5 h-5 mr-2" /> Inicio
+              </Link>
+            </Button>
+        </div>
         <h2 className="text-3xl font-bold text-gray-800 mb-2 font-headline">Selecciona tu Ruta de Formación</h2>
         <p className="text-muted-foreground text-lg">Explora los Niveles de la Nueva Escuela Mexicana</p>
       </header>
