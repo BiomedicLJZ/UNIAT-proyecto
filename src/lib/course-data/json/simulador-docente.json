@@ -1,0 +1,342 @@
+{
+  "courseInfo": {
+    "title": "Simulador Docente NEM",
+    "version": "v3.0",
+    "subtitle": "Comunidad Educativa IA",
+    "description": "Bienvenido, maestro. Selecciona una Ruta de Aprendizaje. Ahora contamos con Nivel 1 (Fundamentos) y Nivel 2 (Profundización) para cada Campo Formativo.",
+    "heroImageUrl": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+    "heroImageAlt": "Docentes colaborando con recursos digitales",
+    "introVideo": {
+      "title": "Introducción al Simulador Docente",
+      "url": "https://www.youtube.com/watch?v=1s1Wq6Wkq1A"
+    },
+    "quickLinks": [
+      {
+        "label": "Guía NEM SEP",
+        "url": "https://educacionbasica.sep.gob.mx/"
+      },
+      {
+        "label": "Centro de Ayuda de Gemini",
+        "url": "https://support.google.com/gemini"
+      }
+    ],
+    "highlights": [
+      {
+        "title": "Escenarios Reales",
+        "description": "Desde redacción básica hasta inteligencia artificial ética."
+      },
+      {
+        "title": "Interdisciplinario",
+        "description": "Conecta materias en cada ruta de aprendizaje."
+      }
+    ]
+  },
+  "routes": [
+    {
+      "id": "lenguajes",
+      "title": "Lenguajes (Nivel 1)",
+      "description": "Español, Inglés y Artes - Fundamentos",
+      "icon": "message-square",
+      "color": "bg-pink-100 text-pink-700 border-pink-300",
+      "buttonColor": "bg-pink-600 hover:bg-pink-700",
+      "scenarios": [
+        {
+          "id": "l1",
+          "discipline": "Español",
+          "title": "La Crónica de la Comunidad",
+          "context": "Los alumnos deben escribir una crónica sobre la historia de su colonia, pero les cuesta estructurar sus ideas y párrafos.",
+          "problem": "¿Cómo usas Gemini en Docs para apoyar el proceso de escritura sin hacerles la tarea?",
+          "resources": [
+            {
+              "type": "video",
+              "title": "Cómo usar 'Ayúdame a escribir' en Gemini",
+              "url": "https://www.youtube.com/watch?v=4D8Yf1fcb8Y"
+            },
+            {
+              "type": "img",
+              "title": "Plantilla de estructura de crónica",
+              "url": "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop"
+            },
+            {
+              "type": "link",
+              "title": "Rúbrica de escritura argumentativa",
+              "url": "https://drive.google.com/file/d/1ZuTvSSloFT14wh0lhpML6AeJjhkpOKO-/view?usp=share_link"
+            }
+          ],
+          "options": [
+            {
+              "id": "a",
+              "text": "Pedir a Gemini que escriba la crónica completa basada en tres palabras clave.",
+              "feedback": "Incorrecto. Esto elimina el proceso cognitivo de redacción y creatividad del alumno.",
+              "score": {
+                "humanismo": 0,
+                "innovacion": 10
+              },
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Usar \"Ayúdame a escribir\" para generar una estructura o esquema de crónica, y luego pedir sugerencias de conectores lógicos.",
+              "feedback": "¡Exacto! Usas la IA como andamiaje para la estructura, permitiendo que el alumno desarrolle el contenido con su propia voz.",
+              "score": {
+                "humanismo": 10,
+                "innovacion": 10
+              },
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "discipline": "Inglés",
+          "title": "Intercambio Cultural Virtual",
+          "context": "Tus alumnos escribirán correos a una escuela en el extranjero. Tienen miedo de cometer errores gramaticales graves.",
+          "problem": "¿Cómo usar la IA para fomentar confianza y no solo corrección?",
+          "resources": [
+            {
+              "type": "video",
+              "title": "Roleplay para practicar inglés con IA",
+              "url": "https://www.youtube.com/watch?v=8ZK_S-46KwE"
+            },
+            {
+              "type": "img",
+              "title": "Ejemplo de correo académico",
+              "url": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
+            },
+            {
+              "type": "link",
+              "title": "Guía de netiqueta para e-mails",
+              "url": "https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html"
+            }
+          ],
+          "options": [
+            {
+              "id": "a",
+              "text": "Usar Gemini para simular ser el \"pen-pal\" (amigo por correspondencia) y practicar la conversación antes de enviar el correo real.",
+              "feedback": "¡Excelente! Creas un entorno seguro de práctica (Roleplay) que reduce la ansiedad del filtro afectivo.",
+              "score": {
+                "humanismo": 10,
+                "innovacion": 10
+              },
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Escribir el correo en español y traducirlo todo con Google Translate.",
+              "feedback": "Poco formativo. La traducción directa no garantiza el aprendizaje de estructuras ni vocabulario.",
+              "score": {
+                "humanismo": 2,
+                "innovacion": 5
+              },
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saberes",
+      "title": "Saberes (Nivel 1)",
+      "description": "Matemáticas y Ciencias - Fundamentos",
+      "icon": "bar-chart",
+      "color": "bg-blue-100 text-blue-700 border-blue-300",
+      "buttonColor": "bg-blue-600 hover:bg-blue-700",
+      "scenarios": [
+        {
+          "id": "s1",
+          "discipline": "Matemáticas",
+          "title": "Estadística del Desperdicio",
+          "context": "Alumnos recolectaron datos sobre basura en el recreo. Tienen tablas llenas de números.",
+          "problem": "Análisis de datos.",
+          "resources": [
+            {
+              "type": "video",
+              "title": "Visualización de datos para clase",
+              "url": "https://www.youtube.com/watch?v=h2mtwWjVr6s"
+            },
+            {
+              "type": "img",
+              "title": "Ejemplo de gráfico circular",
+              "url": "https://images.unsplash.com/photo-1551281044-8f6d0f6de5bc?q=80&w=1200&auto=format&fit=crop"
+            },
+            {
+              "type": "link",
+              "title": "Google Sheets - Explorar",
+              "url": "https://support.google.com/docs/answer/190718"
+            }
+          ],
+          "options": [
+            {
+              "id": "a",
+              "text": "Subir la tabla a Google Sheets y usar \"Explorar\" o Gemini para pedir: \"¿Qué tipo de basura es más frecuente y genera un gráfico circular?\".",
+              "feedback": "¡Correcto! Agilizas la talacha (cálculo) para enfocarte en la interpretación ambiental.",
+              "score": {
+                "humanismo": 10,
+                "innovacion": 10
+              },
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Hacer que cuenten todo a mano para que \"aprendan a sufrir\".",
+              "feedback": "Antipedagógico. El objetivo es el pensamiento estadístico, no la fatiga aritmética.",
+              "score": {
+                "humanismo": 0,
+                "innovacion": 0
+              },
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "etica",
+      "title": "Ética y Sociedades (Nivel 1)",
+      "description": "Historia, Geografía y Cívica - Fundamentos",
+      "icon": "globe",
+      "color": "bg-green-100 text-green-700 border-green-300",
+      "buttonColor": "bg-green-600 hover:bg-green-700",
+      "scenarios": [
+        {
+          "id": "e1",
+          "discipline": "Geografía",
+          "title": "Migración en México",
+          "context": "Analizar las causas de la migración en su estado.",
+          "problem": "Análisis multifactorial.",
+          "resources": [
+            {
+              "type": "video",
+              "title": "Factores de migración explicados",
+              "url": "https://www.youtube.com/watch?v=jb4kKWH8Q1k"
+            },
+            {
+              "type": "img",
+              "title": "Mapa de movilidad humana",
+              "url": "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop"
+            },
+            {
+              "type": "link",
+              "title": "Datos INEGI",
+              "url": "https://www.inegi.org.mx/"
+            }
+          ],
+          "options": [
+            {
+              "id": "a",
+              "text": "Preguntar a la IA: \"¿Cuáles son las causas económicas y sociales de la migración en [Mi Estado]?\" y debatir las respuestas.",
+              "feedback": "¡Correcto! Uso de IA para obtener síntesis informativa rápida y pasar al análisis ético.",
+              "score": {
+                "humanismo": 10,
+                "innovacion": 10
+              },
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Leer el libro de texto de hace 10 años.",
+              "feedback": "Información desactualizada.",
+              "score": {
+                "humanismo": 2,
+                "innovacion": 0
+              },
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "humano",
+      "title": "De lo Humano (Nivel 1)",
+      "description": "Ed. Física, Tecnología y Socioemocional",
+      "icon": "users",
+      "color": "bg-orange-100 text-orange-700 border-orange-300",
+      "buttonColor": "bg-orange-500 hover:bg-orange-600",
+      "scenarios": [
+        {
+          "id": "h1",
+          "discipline": "Educación Física",
+          "title": "Plan de Entrenamiento",
+          "context": "Cada alumno tiene capacidades físicas diferentes.",
+          "problem": "Inclusión física.",
+          "resources": [
+            {
+              "type": "video",
+              "title": "Adaptación de actividades físicas",
+              "url": "https://www.youtube.com/watch?v=f0N3nO7F4uY"
+            },
+            {
+              "type": "img",
+              "title": "Entrenamiento inclusivo",
+              "url": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop"
+            },
+            {
+              "type": "link",
+              "title": "Guía de inclusión en educación física",
+              "url": "https://unesdoc.unesco.org/"
+            }
+          ],
+          "options": [
+            {
+              "id": "a",
+              "text": "Poner a todos a correr 20 vueltas.",
+              "feedback": "Excluyente y militarizado.",
+              "score": {
+                "humanismo": 0,
+                "innovacion": 0
+              },
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Usar IA para sugerir adaptaciones de ejercicios para alumnos con asma, sobrepeso o alta resistencia.",
+              "feedback": "¡Inclusivo! Personalización para el bienestar de todos.",
+              "score": {
+                "humanismo": 10,
+                "innovacion": 10
+              },
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lenguajes2",
+      "title": "Lenguajes (Nivel 2)",
+      "description": "Profundización: Creatividad Multimedia y Medios",
+      "icon": "star",
+      "color": "bg-purple-100 text-purple-700 border-purple-300",
+      "buttonColor": "bg-purple-600 hover:bg-purple-700",
+      "scenarios": []
+    },
+    {
+      "id": "saberes2",
+      "title": "Saberes (Nivel 2)",
+      "description": "Profundización: Innovación y Sustentabilidad",
+      "icon": "zap",
+      "color": "bg-cyan-100 text-cyan-700 border-cyan-300",
+      "buttonColor": "bg-cyan-600 hover:bg-cyan-700",
+      "scenarios": []
+    },
+    {
+      "id": "etica2",
+      "title": "Ética y Sociedades (Nivel 2)",
+      "description": "Profundización: Ciudadanía y Derechos",
+      "icon": "shield",
+      "color": "bg-emerald-100 text-emerald-700 border-emerald-300",
+      "buttonColor": "bg-emerald-600 hover:bg-emerald-700",
+      "scenarios": []
+    },
+    {
+      "id": "humano2",
+      "title": "De lo Humano (Nivel 2)",
+      "description": "Profundización: Bienestar y Futuro",
+      "icon": "heart",
+      "color": "bg-rose-100 text-rose-700 border-rose-300",
+      "buttonColor": "bg-rose-600 hover:bg-rose-700",
+      "scenarios": []
+    }
+  ]
+}
