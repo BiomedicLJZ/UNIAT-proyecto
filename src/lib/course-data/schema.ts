@@ -118,5 +118,66 @@ export const CatalogEntrySchema = z.object({
 
 export const CatalogSchema = z.array(CatalogEntrySchema);
 
+const SimulatorOptionSchema = z.object({
+  id: z.string().min(1),
+  text: z.string().min(1),
+  feedback: z.string().min(1),
+  score: z.object({
+    humanismo: z.number().int().nonnegative(),
+    innovacion: z.number().int().nonnegative(),
+  }),
+  isCorrect: z.boolean(),
+});
+
+const SimulatorScenarioSchema = z.object({
+  id: z.string().min(1),
+  discipline: z.string().min(1),
+  title: z.string().min(1),
+  context: z.string().min(1),
+  problem: z.string().min(1),
+  resources: z.array(ResourceSchema).default([]),
+  options: z.array(SimulatorOptionSchema).min(1),
+});
+
+export const SimulatorRouteIconSchema = z.enum([
+  'message-square',
+  'bar-chart',
+  'globe',
+  'users',
+  'star',
+  'zap',
+  'shield',
+  'heart',
+]);
+
+const SimulatorRouteSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  icon: SimulatorRouteIconSchema,
+  color: z.string().min(1),
+  buttonColor: z.string().min(1),
+  scenarios: z.array(SimulatorScenarioSchema),
+});
+
+export const SimuladorDocenteSchema = z.object({
+  courseInfo: z.object({
+    title: z.string().min(1),
+    version: z.string().min(1),
+    subtitle: z.string().min(1),
+    description: z.string().min(1),
+    heroImageUrl: z.string().url(),
+    heroImageAlt: z.string().min(1),
+    introVideo: z.object({
+      title: z.string().min(1),
+      url: z.string().url(),
+    }),
+    quickLinks: z.array(z.object({ label: z.string().min(1), url: z.string().url() })).default([]),
+    highlights: z.array(z.object({ title: z.string().min(1), description: z.string().min(1) })).default([]),
+  }),
+  routes: z.array(SimulatorRouteSchema).min(1),
+});
+
 export type CourseDocument = z.infer<typeof CourseSchema>;
 export type CatalogEntry = z.infer<typeof CatalogEntrySchema>;
+export type SimuladorDocenteDocument = z.infer<typeof SimuladorDocenteSchema>;

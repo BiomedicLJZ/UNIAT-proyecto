@@ -1,13 +1,16 @@
 'use client';
-import { ArrowRight, CheckCircle, Cpu, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight, CheckCircle, Home, LinkIcon, PlayCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import type { SimulatorInfo } from './types';
 
 type WelcomeViewProps = {
+  info: SimulatorInfo;
   onStart: () => void;
 };
 
-export default function WelcomeView({ onStart }: WelcomeViewProps) {
+export default function WelcomeView({ info, onStart }: WelcomeViewProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 p-6 text-center">
       <div className="absolute top-6 left-6">
@@ -17,36 +20,45 @@ export default function WelcomeView({ onStart }: WelcomeViewProps) {
           </Link>
         </Button>
       </div>
-      <div className="bg-card p-10 rounded-3xl shadow-2xl max-w-3xl w-full border-t-8 border-violet-500">
-        <div className="mb-8 flex justify-center">
-          <div className="bg-violet-100 p-6 rounded-full shadow-inner">
-            <Cpu className="w-20 h-20 text-violet-600" />
+      <div className="bg-card p-10 rounded-3xl shadow-2xl max-w-4xl w-full border-t-8 border-violet-500">
+        <div className="grid md:grid-cols-2 gap-6 items-center mb-8">
+          <div className="relative w-full h-56 rounded-2xl overflow-hidden">
+            <Image src={info.heroImageUrl} alt={info.heroImageAlt} fill className="object-cover" />
+          </div>
+          <div className="text-left">
+            <h1 className="text-4xl font-extrabold text-gray-800 mb-2 tracking-tight font-headline">{info.subtitle}</h1>
+            <h2 className="text-2xl text-violet-600 font-bold mb-4 font-headline">{info.title} {info.version}</h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">{info.description}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Button asChild variant="outline" size="sm">
+                <a href={info.introVideo.url} target="_blank" rel="noopener noreferrer">
+                  <PlayCircle className="w-4 h-4 mr-2" /> {info.introVideo.title}
+                </a>
+              </Button>
+              {info.quickLinks.map((quickLink) => (
+                <Button key={quickLink.label} asChild variant="outline" size="sm">
+                  <a href={quickLink.url} target="_blank" rel="noopener noreferrer">
+                    <LinkIcon className="w-4 h-4 mr-2" /> {quickLink.label}
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
-        <h1 className="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight font-headline">Comunidad Educativa IA</h1>
-        <h2 className="text-2xl text-violet-600 font-bold mb-6 font-headline">Simulador Docente NEM v3.0</h2>
-        <p className="text-muted-foreground mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
-          Bienvenido, maestro. Selecciona una <strong>Ruta de Aprendizaje</strong>. Ahora contamos con <strong>Nivel 1 (Fundamentos)</strong> y <strong>Nivel 2 (Profundización)</strong> para cada Campo Formativo.
-        </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left">
-           <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex items-start">
-             <CheckCircle className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0"/>
-             <div>
-               <h3 className="font-bold text-blue-800">Escenarios Reales</h3>
-               <p className="text-sm text-blue-600">Desde redacción básica hasta inteligencia artificial ética.</p>
-             </div>
-           </div>
-           <div className="bg-purple-50 p-4 rounded-xl border border-purple-100 flex items-start">
-             <CheckCircle className="w-6 h-6 text-purple-600 mr-3 mt-1 flex-shrink-0"/>
-             <div>
-               <h3 className="font-bold text-purple-800">Interdisciplinario</h3>
-               <p className="text-sm text-purple-600">Conecta materias en cada ruta de aprendizaje.</p>
-             </div>
-           </div>
+          {info.highlights.map((highlight) => (
+            <div key={highlight.title} className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex items-start">
+              <CheckCircle className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-bold text-blue-800">{highlight.title}</h3>
+                <p className="text-sm text-blue-600">{highlight.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <Button 
+        <Button
           onClick={onStart}
           size="lg"
           className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-xl transition-all transform hover:scale-105 shadow-xl mx-auto"

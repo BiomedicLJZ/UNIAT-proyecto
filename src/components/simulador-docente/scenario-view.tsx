@@ -1,7 +1,8 @@
 'use client';
-import { ArrowLeft, Activity, MapPin } from 'lucide-react';
+import { ArrowLeft, Activity, ExternalLink, ImageIcon, LinkIcon, MapPin, PlayCircle } from 'lucide-react';
 import type { Route, Scenario, ScenarioOption } from './types';
 import { Button } from '@/components/ui/button';
+import { renderRouteIcon } from './icon-map';
 import { cn } from '@/lib/utils';
 
 type ScenarioViewProps = {
@@ -35,7 +36,7 @@ export default function ScenarioView({ route, scenario, selectedOption, onSelect
            <div className="mt-8">
              <p className="text-xs opacity-60 mb-2">Campo Formativo:</p>
              <div className="flex items-center gap-2 font-bold font-headline">
-               {route.icon} {route.title}
+               {renderRouteIcon(route.icon)} {route.title}
              </div>
            </div>
         </div>
@@ -73,6 +74,29 @@ export default function ScenarioView({ route, scenario, selectedOption, onSelect
               </button>
             ))}
           </div>
+
+          {scenario.resources.length > 0 && (
+            <div className="mb-8 rounded-xl border p-4 bg-muted/20">
+              <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-3">Recursos sugeridos</h4>
+              <div className="grid gap-3">
+                {scenario.resources.map((resource) => (
+                  <a
+                    key={resource.title}
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-lg border bg-background p-3 hover:border-primary/50 transition-colors"
+                  >
+                    <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+                      {resource.type === 'video' ? <PlayCircle className="w-4 h-4" /> : resource.type === 'img' ? <ImageIcon className="w-4 h-4" /> : <LinkIcon className="w-4 h-4" />}
+                      {resource.title}
+                    </span>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
           <Button
             onClick={onSubmit}
