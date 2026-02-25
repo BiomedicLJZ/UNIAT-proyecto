@@ -37,21 +37,44 @@ export type Closing = {
   additionalAudioDuration?: string;
 };
 
-export type Module = {
+type BaseModule = {
   id: string;
   title: string;
-  fullTitle?: string;
-  type: 'presentation' | 'topic' | 'closing' | 'completion';
-  description?: string;
-  headerImage?: string;
   content: React.ReactNode;
-  hasIntroVideo?: boolean;
-  introVideoTitle?: string;
-  introVideoUrl?: string;
+};
+
+export type PresentationModule = BaseModule & {
+  type: 'presentation';
+  headerImage?: string;
   resources?: Resource[];
-  subtopics?: Subtopic[];
+};
+
+export type TopicModule = BaseModule & {
+  type: 'topic';
+  fullTitle?: string;
+  description?: string;
+  introVideo?: {
+    title: string;
+    url: string;
+  };
+  subtopics: Subtopic[];
   forum?: Forum;
   closing?: Closing;
-  activity?: Activity;
+};
+
+export type ClosingModule = BaseModule & {
+  type: 'closing';
+  closingText: string;
+  activity: Activity;
+};
+
+export type CompletionModule = BaseModule & {
+  type: 'completion';
   image?: string;
 };
+
+export type Module =
+  | PresentationModule
+  | TopicModule
+  | ClosingModule
+  | CompletionModule;

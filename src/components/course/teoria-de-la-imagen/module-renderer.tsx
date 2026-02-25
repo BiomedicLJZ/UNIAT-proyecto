@@ -12,10 +12,20 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConfettiEffect from './confetti-effect';
-import type { Module, Resource } from './types';
+import type { Activity, Closing, Forum, Module, Resource, Subtopic } from './types';
 import { getEmbedUrl } from './utils';
 
-const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, isCompleted: boolean, onToggle: () => void }) => {
+type OnResourceClick = (resource: Resource) => void;
+
+const ActivityRenderer = ({
+  activity,
+  isCompleted,
+  onToggle,
+}: {
+  activity?: Activity;
+  isCompleted: boolean;
+  onToggle: () => void;
+}) => {
     if (!activity) return null;
     return (
         <div className={`mt-6 p-5 rounded-xl border transition-all ${isCompleted ? 'bg-green-500/10 border-green-500/20' : 'bg-muted/30'}`}>
@@ -32,8 +42,8 @@ const ActivityRenderer = ({ activity, isCompleted, onToggle }: { activity: any, 
     );
 };
 
-const ForumRenderer = ({ forumData }: { forumData: any }) => {
-    const [posts, setPosts] = useState(forumData.initialPosts || []);
+const ForumRenderer = ({ forumData }: { forumData: Forum }) => {
+    const [posts] = useState(forumData.initialPosts || []);
     return (
         <Card>
             <CardHeader>
@@ -42,7 +52,7 @@ const ForumRenderer = ({ forumData }: { forumData: any }) => {
             <CardContent>
                 <p className="text-muted-foreground italic mb-4">"{forumData.question}"</p>
                 <div className="space-y-4">
-                    {posts.map((post:any, idx:number) => (
+                    {posts.map((post, idx) => (
                         <div key={idx} className="bg-muted/50 p-3 rounded-lg text-sm">
                             <p className="font-bold text-foreground">{post.user}</p>
                             <p className="text-muted-foreground">{post.text}</p>
@@ -54,21 +64,31 @@ const ForumRenderer = ({ forumData }: { forumData: any }) => {
     );
 };
 
-const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: any, onPlay: any }) => (
+const ModuleConclusionRenderer = ({
+  closingData,
+  onPlay,
+}: {
+  closingData: Closing;
+  onPlay: OnResourceClick;
+}) => {
+  const audioUrl = closingData.url;
+
+  return (
     <Card className="bg-gradient-to-br from-primary/5 to-background">
-        <CardHeader>
-            <CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/> Cierre y Conclusiones</CardTitle>
-        </CardHeader>
-        <CardContent>
-            <p className="text-muted-foreground mb-4">{closingData.text}</p>
-            {closingData.url && (
-                <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: closingData.url })}>
-                    <PlayCircle className="mr-2 h-4 w-4"/> {closingData.audioTitle} ({closingData.duration})
-                </Button>
-            )}
-        </CardContent>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/> Cierre y Conclusiones</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground mb-4">{closingData.text}</p>
+        {audioUrl && (
+          <Button onClick={() => onPlay({ type: 'audio', title: closingData.audioTitle, url: audioUrl })}>
+            <PlayCircle className="mr-2 h-4 w-4"/> {closingData.audioTitle} ({closingData.duration})
+          </Button>
+        )}
+      </CardContent>
     </Card>
-);
+  );
+};
 
 const ResourceCard = ({ resource, onClick }: { resource: Resource, onClick: (res: Resource) => void }) => {
     const iconMap = {
@@ -94,7 +114,21 @@ const ResourceCard = ({ resource, onClick }: { resource: Resource, onClick: (res
 };
 
 
-const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isCompleted, onToggleActivity }: { subtopic: any, moduleId: string, index: number, onResourceClick: any, isCompleted: boolean, onToggleActivity: any }) => (
+const SubtopicSection = ({
+  subtopic,
+  moduleId,
+  index,
+  onResourceClick,
+  isCompleted,
+  onToggleActivity,
+}: {
+  subtopic: Subtopic;
+  moduleId: string;
+  index: number;
+  onResourceClick: OnResourceClick;
+  isCompleted: boolean;
+  onToggleActivity: (id: string) => void;
+}) => (
   <section className="relative pl-0 md:pl-8 md:border-l-2 md:border-dashed">
     <div className="hidden md:flex absolute -left-[15px] top-0 w-7 h-7 rounded-full items-center justify-center text-xs font-bold text-white shadow-sm transition-colors bg-muted-foreground">
       {index + 1}
@@ -124,7 +158,7 @@ const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isComplet
 
 type ModuleRendererProps = {
   module: Module;
-  onResourceClick: (resource: Resource) => void;
+  onResourceClick: OnResourceClick;
   completedActivities: Record<string, boolean>;
   onToggleActivity: (id: string) => void;
 };
@@ -187,7 +221,9 @@ export default function ModuleRenderer({
         </div>
       );
 
-    case 'topic':
+    case 'topic': {
+      const introVideo = module.introVideo;
+
       return (
         <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto">
           <header className="border-b pb-6">
@@ -195,10 +231,10 @@ export default function ModuleRenderer({
             <div className="text-lg text-muted-foreground leading-relaxed">{module.content}</div>
           </header>
           <div className="space-y-16">
-            {module.hasIntroVideo && (
+            {introVideo && (
               <div className="mb-10 animate-fadeIn">
                 <div
-                  onClick={() => onResourceClick({ type: 'video', title: module.introVideoTitle || `Video Introductorio: ${module.title}`, url: module.introVideoUrl! })}
+                  onClick={() => onResourceClick({ type: 'video', title: introVideo.title, url: introVideo.url })}
                   className="cursor-pointer bg-gray-900 rounded-xl overflow-hidden relative aspect-video shadow-lg group hover:shadow-2xl transition-all border border-gray-800"
                 >
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
@@ -209,13 +245,13 @@ export default function ModuleRenderer({
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="text-white font-bold text-lg flex items-center gap-2">
                       <Video size={20} className="text-primary" />
-                      {module.introVideoTitle || 'Ver Video Introductorio'}
+                      {introVideo.title}
                     </p>
                   </div>
                 </div>
               </div>
             )}
-            {module.subtopics?.map((sub, index) => (
+            {module.subtopics.map((sub, index) => (
               <SubtopicSection
                 key={sub.id}
                 subtopic={sub}
@@ -239,7 +275,8 @@ export default function ModuleRenderer({
           </div>
         </div>
       );
-    
+    }
+
     case 'closing':
         return (
             <div className="space-y-8 animate-fadeIn max-w-3xl mx-auto py-10">
@@ -263,12 +300,5 @@ export default function ModuleRenderer({
             </div>
         );
 
-    default:
-      return (
-        <div>
-          <h2 className="text-2xl font-bold">{module.title}</h2>
-          <div>{module.content}</div>
-        </div>
-      );
   }
 }

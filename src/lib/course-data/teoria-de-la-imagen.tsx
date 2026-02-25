@@ -116,11 +116,11 @@ export const COURSE_CONTENT: Module[] = [
     type: 'topic',
     description:
       'Análisis de los componentes fundamentales: gráfica, sonido y movimiento.',
-    hasIntroVideo: true,
-    introVideoTitle:
-      'Video Introductorio: Entrevista con Andrés Carmona- Productor Audiovisual',
-    introVideoUrl:
-      'https://drive.google.com/file/d/1M6ehqTPsQgptia9cOuiV2ox9gc6QgOzt/view?usp=share_link',
+    introVideo: {
+      title:
+        'Video Introductorio: Entrevista con Andrés Carmona- Productor Audiovisual',
+      url: 'https://drive.google.com/file/d/1M6ehqTPsQgptia9cOuiV2ox9gc6QgOzt/view?usp=share_link',
+    },
     content: (
       <>
         <p style={paragraphStyle} className={justifyClass}>

@@ -35,14 +35,14 @@ export default function CourseInterface() {
     let total = 0;
     let completed = 0;
     COURSE_CONTENT.forEach(mod => {
-      if (mod.subtopics) {
+      if (mod.type === 'topic') {
         mod.subtopics.forEach(sub => {
           if (sub.activity) {
             total++;
             if (completedActivities[`${mod.id}-${sub.id}`]) completed++;
           }
         });
-      } else if (mod.activity) {
+      } else if (mod.type === 'closing') {
         total++;
         if (completedActivities[mod.id]) completed++;
       }
