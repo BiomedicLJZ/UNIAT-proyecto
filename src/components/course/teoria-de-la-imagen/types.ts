@@ -17,11 +17,7 @@ export type Activity = {
 export type Subtopic = {
   id: string;
   title: string;
-<<<<<<< HEAD
-  content: any;
-=======
   content: ContentBlock[];
->>>>>>> 9aadab3e1d0c2c78fb73fdc16f05a656ca37a41f
   resources?: Resource[];
   activity?: Activity;
 };
@@ -50,11 +46,7 @@ export type Module = {
   type: 'presentation' | 'topic' | 'closing' | 'completion';
   description?: string;
   headerImage?: string;
-<<<<<<< HEAD
-  content: any;
-=======
   content: ContentBlock[];
->>>>>>> 9aadab3e1d0c2c78fb73fdc16f05a656ca37a41f
   hasIntroVideo?: boolean;
   introVideoTitle?: string;
   introVideoUrl?: string;
