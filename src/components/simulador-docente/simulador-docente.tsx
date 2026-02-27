@@ -6,7 +6,7 @@ import PathView from './path-view';
 import ScenarioView from './scenario-view';
 import FeedbackView from './feedback-view';
 import SummaryView from './summary-view';
-import { ROUTES } from '@/lib/course-data/simulador-docente';
+import { ROUTES, SIMULADOR_INFO } from '@/lib/course-data/simulador-docente';
 import type { Route, Scenario, ScenarioOption } from './types';
 
 export default function SimuladorDocente() {
@@ -82,7 +82,7 @@ export default function SimuladorDocente() {
 
   return (
     <div className="font-body antialiased text-gray-900 selection:bg-indigo-100">
-      {gameState === 'welcome' && <WelcomeView onStart={handleStart} />}
+      {gameState === 'welcome' && <WelcomeView info={SIMULADOR_INFO} onStart={handleStart} />}
       {gameState === 'routes' && <RoutesView routes={ROUTES} completedScenarios={completedScenarios} onSelectRoute={handleSelectRoute} />}
       {gameState === 'path' && currentRoute && <PathView route={currentRoute} completedScenarios={completedScenarios} score={score} onSelectScenario={handleSelectScenario} onBack={handleBackToRoutes} />}
       {gameState === 'scenario' && currentRoute && currentScenario && <ScenarioView route={currentRoute} scenario={currentScenario} selectedOption={selectedOption} onSelectOption={setSelectedOption} onSubmit={handleSubmitOption} onBack={() => setGameState('path')} />}

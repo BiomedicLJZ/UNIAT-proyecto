@@ -4,6 +4,7 @@ import type { Route } from './types';
 import { Progress } from '@/components/ui/progress';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { renderRouteIcon } from './icon-map';
 
 type RoutesViewProps = {
   routes: Route[];
@@ -41,7 +42,7 @@ export default function RoutesView({ routes, completedScenarios, onSelectRoute }
               <div className={`${route.color} p-6 flex items-center justify-between`}>
                 <div className="flex items-center gap-4">
                   <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                    {route.icon}
+                    {renderRouteIcon(route.icon)}
                   </div>
                   <div>
                     <h3 className="text-xl font-bold font-headline">{route.title}</h3>

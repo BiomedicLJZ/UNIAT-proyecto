@@ -2,6 +2,7 @@
 import { Home, Heart, Cpu, CheckCircle, Lock } from 'lucide-react';
 import type { Route } from './types';
 import { Button } from '@/components/ui/button';
+import { renderRouteIcon } from './icon-map';
 import { cn } from '@/lib/utils';
 
 type PathViewProps = {
@@ -21,7 +22,7 @@ export default function PathView({ route, completedScenarios, score, onSelectSce
             <Home className="w-5 h-5 mr-2" /> Menú
           </Button>
           <h2 className="text-lg md:text-xl font-bold flex items-center gap-2 truncate font-headline">
-            {route.icon} {route.title}
+            {renderRouteIcon(route.icon)} {route.title}
           </h2>
           <div className="flex gap-4 text-xs md:text-sm font-bold bg-white/30 px-4 py-2 rounded-full backdrop-blur-md">
             <span className="flex items-center"><Heart className="w-4 h-4 mr-1" /> {score.humanismo}</span>
