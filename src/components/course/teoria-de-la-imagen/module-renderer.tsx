@@ -69,7 +69,8 @@ const ModuleConclusionRenderer = ({ closingData, onPlay }: { closingData: Closin
             )}
         </CardContent>
     </Card>
-);
+  );
+};
 
 const ResourceCard = ({ resource, onClick }: { resource: Resource, onClick: (res: Resource) => void }) => {
     const iconMap = {
@@ -125,7 +126,7 @@ const SubtopicSection = ({ subtopic, moduleId, index, onResourceClick, isComplet
 
 type ModuleRendererProps = {
   module: Module;
-  onResourceClick: (resource: Resource) => void;
+  onResourceClick: OnResourceClick;
   completedActivities: Record<string, boolean>;
   onToggleActivity: (id: string) => void;
 };
@@ -188,7 +189,9 @@ export default function ModuleRenderer({
         </div>
       );
 
-    case 'topic':
+    case 'topic': {
+      const introVideo = module.introVideo;
+
       return (
         <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto">
           <header className="border-b pb-6">
@@ -196,10 +199,10 @@ export default function ModuleRenderer({
             <div className="text-lg text-muted-foreground leading-relaxed"><ContentBlockRenderer blocks={module.content} /></div>
           </header>
           <div className="space-y-16">
-            {module.hasIntroVideo && (
+            {introVideo && (
               <div className="mb-10 animate-fadeIn">
                 <div
-                  onClick={() => onResourceClick({ type: 'video', title: module.introVideoTitle || `Video Introductorio: ${module.title}`, url: module.introVideoUrl! })}
+                  onClick={() => onResourceClick({ type: 'video', title: introVideo.title, url: introVideo.url })}
                   className="cursor-pointer bg-gray-900 rounded-xl overflow-hidden relative aspect-video shadow-lg group hover:shadow-2xl transition-all border border-gray-800"
                 >
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
@@ -210,13 +213,13 @@ export default function ModuleRenderer({
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                     <p className="text-white font-bold text-lg flex items-center gap-2">
                       <Video size={20} className="text-primary" />
-                      {module.introVideoTitle || 'Ver Video Introductorio'}
+                      {introVideo.title}
                     </p>
                   </div>
                 </div>
               </div>
             )}
-            {module.subtopics?.map((sub, index) => (
+            {module.subtopics.map((sub, index) => (
               <SubtopicSection
                 key={sub.id}
                 subtopic={sub}
@@ -240,7 +243,8 @@ export default function ModuleRenderer({
           </div>
         </div>
       );
-    
+    }
+
     case 'closing':
         return (
             <div className="space-y-8 animate-fadeIn max-w-3xl mx-auto py-10">

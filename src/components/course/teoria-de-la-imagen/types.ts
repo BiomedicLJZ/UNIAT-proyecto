@@ -39,7 +39,7 @@ export type Closing = {
   additionalAudioDuration?: string;
 };
 
-export type Module = {
+type BaseModule = {
   id: string;
   title: string;
   fullTitle?: string;
@@ -51,10 +51,26 @@ export type Module = {
   introVideoTitle?: string;
   introVideoUrl?: string;
   resources?: Resource[];
-  subtopics?: Subtopic[];
+};
+
+export type TopicModule = BaseModule & {
+  type: 'topic';
+  fullTitle?: string;
+  description?: string;
+  introVideo?: {
+    title: string;
+    url: string;
+  };
+  subtopics: Subtopic[];
   forum?: Forum;
   closing?: Closing;
   closingText?: string;
   activity?: Activity;
   image?: string;
 };
+
+export type Module =
+  | PresentationModule
+  | TopicModule
+  | ClosingModule
+  | CompletionModule;
